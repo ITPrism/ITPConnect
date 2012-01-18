@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="ITPConnect">
+		<message>
+			<![CDATA[It is ITPConnect default layout ]]>
+		</message>
+	</layout>
+	<state>
+        <name>ITPConnect layout</name>
+        <description>ITPConnect default layout.</description>
+    </state>
+</metadata>

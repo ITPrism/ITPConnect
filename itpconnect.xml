@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.6.0" method="upgrade">
+<name>com_itpconnect</name>
+<creationDate>December, 2010</creationDate>
+<author>Todor Iliev</author>
+<authorEmail>todor@itprism.com</authorEmail>
+<authorUrl>http://itprism.com</authorUrl>
+<copyright>Copyright (C) 2010 Todor Iliev ( ITPrism.com )</copyright>
+<license>http://www.gnu.org/copyleft/gpl.html</license>
+<version>1.3</version>
+<description>COM_ITPCONNECT_DESCRIPTION</description>
+
+	<install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.sql</file>
+        </sql>
+    </install>
+
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.sql</file>
+        </sql>
+    </uninstall>
+	
+	<update> <!-- Runs on update; New in 1.6 -->
+		<schemas>
+				<schemapath type="mysql">sql/updates</schemapath>
+		</schemas>
+	</update>
+	
+	<!-- Runs on install/uninstall/update; New in 1.6 -->
+    <scriptfile>install.php</scriptfile>
+		
+	<media destination="com_itpconnect" folder="media">
+		<filename>index.html</filename>
+		<folder>images</folder>
+		<folder>css</folder>
+	</media>
+		
+	<!-- Site Main File Copy Section -->
+	<files folder="site">
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
+		<filename>router.php</filename>
+		<filename>itpconnect.php</filename>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+
+	<languages folder="site">
+		<language tag="en-GB">language/en-GB/en-GB.com_itpconnect.ini</language>
+	</languages>
+	
+	<administration>
+		<!-- Administration Menu Section -->
+		<menu link="index.php?option=com_itpconnect" view="users" img="../media/com_itpconnect/images/itpconnect.png" alt="COM_ITPCONNECT_MENU" >COM_ITPCONNECT_MENU</menu>
+				
+		<files folder="admin">
+			<!-- Admin Main File Copy Section -->
+			<filename>controller.php</filename>
+			<filename>index.html</filename>
+			<filename>config.xml</filename> 
+			<filename>itpconnect.php</filename>		
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>libraries</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>		
+			<!-- SQL files section -->
+			<folder>sql</folder>
+			
+		</files>
+		
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB/en-GB.com_itpconnect.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.com_itpconnect.sys.ini</language>
+		</languages>
+	</administration> 
+
+</extension>

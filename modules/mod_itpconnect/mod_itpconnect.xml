@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="1.6.0" client="site" method="upgrade">
+    <name>ITPConnect Login</name>
+	<author>Todor Iliev</author>
+	<creationDate>December, 2010</creationDate>
+	<copyright>Copyright (C) 2010 Todor Iliev ( ITPrism.com )</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>todor@itprism.com</authorEmail>
+	<authorUrl>http://itprism.com</authorUrl>
+	<version>1.3</version>
+	<description><![CDATA[<p><a href="http://itprism.com/free-joomla-extensions/social-connection-authentication">ITPConnect</a> displays a username and password login form. It also displays a link to retrieve a forgotten password. If user registration is enabled (in the Global Configuration settings), another link will be shown to enable self-registration for users.</p><p>If you like this extension, you are able to invest in its improvement. You can <a href="http://itprism.com/sponsorship" title="ITPConnect sponsoring" target="_blank">sponsor it via SMS or PayPal</a>.</p><p>Please, <a href="http://extensions.joomla.org/extensions/social-web/facebook-integration/15851" title="Vote for ITPConnect">vote for the extension</a> on Joomla! Extensions Directory.<p>]]></description>
+    <files>
+        <filename module="mod_itpconnect">mod_itpconnect.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <languages>
+        <language tag="en-GB">en-GB.mod_itpconnect.ini</language>
+        <language tag="en-GB">en-GB.mod_itpconnect.sys.ini</language>
+    </languages>
+    <help key="JHELP_EXTENSIONS_MODULE_MANAGER_LOGIN" />
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="pretext"
+                    type="textarea"
+                    filter="safehtml"
+                    cols="30"
+                    rows="5"
+                    label="MOD_LOGIN_FIELD_PRE_TEXT_LABEL"
+                    description="MOD_LOGIN_FIELD_PRE_TEXT_DESC" />
+                <field
+                    name="posttext"
+                    type="textarea"
+                    filter="safehtml"
+                    cols="30"
+                    rows="5"
+                    label="MOD_LOGIN_FIELD_POST_TEXT_LABEL"
+                    description="MOD_LOGIN_FIELD_POST_TEXT_DESC" />
+                <field
+                    name="login"
+                    type="menuitem"
+                    disable="separator"
+                    label="MOD_LOGIN_FIELD_LOGIN_REDIRECTURL_LABEL"
+                    description="MOD_LOGIN_FIELD_LOGIN_REDIRECTURL_DESC" >
+                    <option 
+                        value="">JDEFAULT</option>
+                </field>
+                <field
+                    name="logout"
+                    type="menuitem"
+                    disable="separator"
+                    label="MOD_LOGIN_FIELD_LOGOUT_REDIRECTURL_LABEL"
+                    description="MOD_LOGIN_FIELD_LOGOUT_REDIRECTURL_DESC" >
+                    <option 
+                        value="">JDEFAULT</option>
+                </field>
+                <field
+                    name="greeting"
+                    type="radio"
+                    default="1"
+                    label="MOD_LOGIN_FIELD_GREETING_LABEL"
+                    description="MOD_LOGIN_FIELD_GREETING_DESC">
+                    <option
+                        value="0">JNo</option>
+                    <option
+                        value="1">JYes</option>
+                </field>
+                <field
+                    name="name"
+                    type="list"
+                    default="0"
+                    label="MOD_LOGIN_FIELD_NAME_LABEL"
+                    description="MOD_LOGIN_FIELD_NAME_DESC">
+                    <option
+                        value="0">MOD_LOGIN_VALUE_NAME</option>
+                    <option
+                        value="1">MOD_LOGIN_VALUE_USERNAME</option>
+                </field>
+                <field
+                    name="usesecure"
+                    type="radio"
+                    default="0"
+                    label="MOD_LOGIN_FIELD_USESECURE_LABEL"
+                    description="MOD_LOGIN_FIELD_USESECURE_DESC">
+                    <option
+                        value="0">JNo</option>
+                    <option
+                        value="1">JYes</option>
+                </field>
+                <field name="spacer2" type="spacer" class="text" label="############# FACEBOOK SETTINGS #############" />
+                <field name="fbShowImage" type="radio" default="0" label="MOD_ITPCONNECT_FB_SHOW_IMAGE" description="MOD_ITPCONNECT_FB_SHOW_IMAGE_DESC">
+                    <option value="0">JNo</option>
+                    <option value="1">JYes</option>
+                </field>
+                <field name="fbImageSize" type="list" default="square" label="MOD_ITPCONNECT_FB_IMAGE_SIZE" description="MOD_ITPCONNECT_FB_IMAGE_SIZE_DESC">
+                    <option value="square">Square</option>
+                    <option value="small">Small</option>
+                    <option value="large">Large</option>
+                </field>
+                <field name="fbPerms" type="textarea" cols="30" rows="5" default="email" label="MOD_ITPCONNECT_FB_PERMS" description="MOD_ITPCONNECT_FB_PERMS_DESC" />
+            </fieldset>
+            <fieldset
+                name="advanced">
+                <field
+                    name="layout"
+                    type="modulelayout"
+                    label="JFIELD_ALT_LAYOUT_LABEL"
+                    description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+                <field
+                    name="moduleclass_sfx"
+                    type="text"
+                    label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                    description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+                <field
+                    name="cache"
+                    type="list"
+                    default="0"
+                    label="COM_MODULES_FIELD_CACHING_LABEL"
+                    description="COM_MODULES_FIELD_CACHING_DESC">
+                    <option
+                        value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
