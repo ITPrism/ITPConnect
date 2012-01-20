@@ -3,6 +3,12 @@ ITPConnect for Joomla!
 ( Version 1.4 )
 --------------------------
 
+Build the package
+--------
+You can build the package by execution the build/package.php script.
+
+Example:
+Go to the directory "build" and enter "php package.php". The script will create a package automatically.
 
 Changelog
 ---------
