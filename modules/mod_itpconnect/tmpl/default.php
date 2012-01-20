@@ -27,7 +27,7 @@ JHtml::_('behavior.keepalive');
     </div>
 <?php } ?>
 <?php if($itpConnectParams->get("facebookOn", 0)){?>
-    <?php if($me AND $params->get("fbShowImage")){?>
+    <?php if($me AND $itpConnectParams->get("fbShowImage")){?>
     <img style="margin: 10px 0 10px 0;" src="http://graph.facebook.com/<?php echo $me["id"];?>/picture?type=<?php echo $params->get("fbImageSize","square")?>" alt="<?php echo $me["name"];?>" />
     <?php }?>
 <?php }?>
