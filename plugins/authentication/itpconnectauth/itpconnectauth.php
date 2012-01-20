@@ -11,8 +11,8 @@
  * other free or open source software licenses.
  */
 
-// Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die('Restricted access');
+// No direct access
+defined('_JEXEC') or die;
 
 jimport('joomla.application.component.helper');
 jimport('joomla.plugin.plugin');
@@ -37,68 +37,52 @@ class plgAuthenticationItpConnectAuth extends JPlugin {
      */
     public function onUserAuthenticate($credentials, $options, &$response){
         
-        /*
-		 * Here you would do whatever you need for an authentication routine with the credentials
-		 *
-		 * In this example the mixed variable $return would be set to false
-		 * if the authentication routine fails or an integer userid of the authenticated
-		 * user if the routine passes
-		 */
-        $success = true;
+        $success = false;
         
         $itpConnectParams = JComponentHelper::getParams('com_itpconnect');
         if(!$itpConnectParams->get("facebookOn")){
-            return false;
+            return $success;
         }
         
         if(!JComponentHelper::isEnabled('com_itpconnect', true)){
-            return false;
+            return $success;
         }
         
         $app = & JFactory::getApplication();
         /* @var $app JApplication */
         
         if($app->isAdmin()){
-            return false;
+            return $success;
         }
         
         $response->type = 'ItpConnect';
-        $facebook       = ItpcHelper::getFB();
-        $session        = $facebook->getSession();
+        $fbUserId       = ItpcHelper::getFB()->getUser();
         
-        $me = null;
-        // Session based API call.
-        if($session){
-            try{
-                $me = $facebook->api('/me');
-            }catch(FacebookApiException $e){
-                $itpSecurity = new ItpSecurity($e);
-                $itpSecurity->AlertMe();
-                $me = null;
-            }
-        }
-        
-        if(!$me){
+        if(!$fbUserId){
             $response->status        = JAUTHENTICATE_STATUS_FAILURE;
             $response->error_message = 'Could not authenticate';
-            $success = false;
         }else{
             
-            $userId 				 = ItpcHelper::getJUserId($me['id']);
+            $userId 				 = ItpcHelper::getJUserId($fbUserId);
             $user 					 = JUser::getInstance($userId); // Bring this in line with the rest of the system
             if(!$user) {
                 $response->status        = JAUTHENTICATE_STATUS_FAILURE;
                 $response->error_message = 'Could not authenticate';
-                $success = false;
             } else {
                 $response->email         = $user->email;
                 $response->fullname      = $user->name;
-                $response->language      = $user->getParam('language');
+                if (JFactory::getApplication()->isAdmin()) {
+					$response->language = $user->getParam('admin_language');
+				}
+				else {
+					$response->language = $user->getParam('language');
+				}
+				
                 $response->status        = JAUTHENTICATE_STATUS_SUCCESS;
                 $response->error_message = '';
+                $success = true;
             }
             
-            $success = true;
         }
         
         return $success;

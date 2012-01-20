@@ -28,20 +28,20 @@ $user       = JFactory::getUser();
 $itpConnectParams = JComponentHelper::getParams('com_itpconnect');
 
 if($itpConnectParams->get("facebookOn", 0)){
+    $facebook = ItpcHelper::getFB();
     
-    $facebook   = ItpcHelper::getFB();
-    $session    = $facebook->getSession();
-    
+    // Get User ID
+    $fbUserId = $facebook->getUser();
     $me = null;
-    // Session based API call.
-    if ($session) {
-        try {
-            $uid = $facebook->getUser ();
-            $me  = $facebook->api('/me');
-        } catch ( FacebookApiException $e ) {
-            $itpSecurity = new ItpSecurity ( $e );
-            $itpSecurity->AlertMe ();
-        }
+    
+    if ($fbUserId) {
+      try {
+        // Proceed knowing you have a logged in user who's authenticated.
+        $me = $facebook->api('/me');
+      } catch (FacebookApiException $e) {
+        error_log($e);
+        $user = null;
+      }
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="1.6.0" client="site" method="upgrade">
+<extension type="module" version="1.7" client="site" method="upgrade">
     <name>ITPConnect Login</name>
 	<author>Todor Iliev</author>
 	<creationDate>December, 2010</creationDate>
@@ -7,7 +7,7 @@
 	<license>http://www.gnu.org/copyleft/gpl.html</license>
 	<authorEmail>todor@itprism.com</authorEmail>
 	<authorUrl>http://itprism.com</authorUrl>
-	<version>1.3</version>
+	<version>1.4</version>
 	<description><![CDATA[<p><a href="http://itprism.com/free-joomla-extensions/social-connection-authentication">ITPConnect</a> displays a username and password login form. It also displays a link to retrieve a forgotten password. If user registration is enabled (in the Global Configuration settings), another link will be shown to enable self-registration for users.</p><p>If you like this extension, you are able to invest in its improvement. You can <a href="http://itprism.com/sponsorship" title="ITPConnect sponsoring" target="_blank">sponsor it via SMS or PayPal</a>.</p><p>Please, <a href="http://extensions.joomla.org/extensions/social-web/facebook-integration/15851" title="Vote for ITPConnect">vote for the extension</a> on Joomla! Extensions Directory.<p>]]></description>
     <files>
         <filename module="mod_itpconnect">mod_itpconnect.php</filename>
@@ -89,17 +89,6 @@
                     <option
                         value="1">JYes</option>
                 </field>
-                <field name="spacer2" type="spacer" class="text" label="############# FACEBOOK SETTINGS #############" />
-                <field name="fbShowImage" type="radio" default="0" label="MOD_ITPCONNECT_FB_SHOW_IMAGE" description="MOD_ITPCONNECT_FB_SHOW_IMAGE_DESC">
-                    <option value="0">JNo</option>
-                    <option value="1">JYes</option>
-                </field>
-                <field name="fbImageSize" type="list" default="square" label="MOD_ITPCONNECT_FB_IMAGE_SIZE" description="MOD_ITPCONNECT_FB_IMAGE_SIZE_DESC">
-                    <option value="square">Square</option>
-                    <option value="small">Small</option>
-                    <option value="large">Large</option>
-                </field>
-                <field name="fbPerms" type="textarea" cols="30" rows="5" default="email" label="MOD_ITPCONNECT_FB_PERMS" description="MOD_ITPCONNECT_FB_PERMS_DESC" />
             </fieldset>
             <fieldset
                 name="advanced">

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="1.6.0" type="plugin" group="user" method="upgrade">
+<extension version="1.7" type="plugin" group="user" method="upgrade">
 	<name>User - ITPConnect</name>
-	<creationDate>December 11, 2010</creationDate>
+	<creationDate>December, 2010</creationDate>
 	<author>Todor Iliev</author>
 	<authorEmail>todor@itprism.com</authorEmail>
 	<authorUrl>http://itprism.com</authorUrl>
 	<copyright>Copyright (C) 2010 Todor Iliev ( ITPrism.com )</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html</license>
-	<version>1.3</version>
+	<version>1.7</version>
 	<description>This plugin destroys the FaceBook session on logout.</description>
 	<files>
 		<filename plugin="itpconnectuser">itpconnectuser.php</filename>

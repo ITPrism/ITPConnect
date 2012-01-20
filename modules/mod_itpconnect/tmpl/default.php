@@ -92,10 +92,10 @@ JHtml::_('behavior.keepalive');
         <p><?php echo $params->get('posttext'); ?></p>
         </div>
     <?php } ?>
-</form>
+</form> 
 <?php } ?>
 <?php if($itpConnectParams->get("facebookOn", 0)){?>
     <?php if(!$me){?>
-    <fb:login-button size="large" perms="<?php echo $params->def('fbPerms', 'email');?>"><?php echo JText::_("MOD_ITPCONNECT_FB_BUTTON");?></fb:login-button>
+    <div class="fb-login-button" data-onlogin="itpLogin();"  data-size="<?php echo $itpConnectParams->get('fbButtonSize', 'large');?>" data-scope="<?php echo $itpConnectParams->get('fbPerms', 'email');?>"><?php echo JText::_("MOD_ITPCONNECT_FB_BUTTON");?></div>
     <?php } ?>
 <?php }?>

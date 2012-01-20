@@ -1,34 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-        <fieldset
-                name="facebook"
-                label="Facebook"
-                description="COM_ITPCONNECT_FB_PARAMETERS"
-        >
-                <field name="facebookOn" type="radio" default="1" label="COM_ITPCONNECT_FB_ON" description="COM_ITPCONNECT_FB_ON_DESC"  >
-	                <option value="0">No</option>
-	                <option value="1">Yes</option>
-                </field>
-                
-                <field
-                        name="facebookAppId"
-                        type="text"
-                        label="COM_ITPCONNECT_FB_APP_ID"
-                        description="COM_ITPCONNECT_FB_APP_ID_DESC"
-                        default=""
-                        size="80"
-                />
-                <field
-                        name="facebookSecret"
-                        type="text"
-                        label="COM_ITPCONNECT_FB_APP_SECRET"
-                        description="COM_ITPCONNECT_FB_APP_SECRET_DESC"
-                        default=""
-                        size="80"
-                />
-                <field name="fbDynamicLocale" type="radio" default="1" label="COM_ITPCONNECT_DYN_LOCALE" description="COM_ITPCONNECT_DYN_LOCALE_DESC">
-                    <option value="0">JNO</option>
-                    <option value="1">JYES</option>
+        <fieldset name="facebook" label="Facebook" description="COM_ITPCONNECT_FB_PARAMETERS" >
+            <field name="spacer1" type="spacer" class="text" label="COM_ITPCONNECT_SYSTEM_SETTING" />
+            <field name="facebookOn" type="radio" default="1" label="COM_ITPCONNECT_FB_ON" description="COM_ITPCONNECT_FB_ON_DESC"  >
+             <option value="0">No</option>
+             <option value="1">Yes</option>
+            </field>
+            
+            <field
+                    name="facebookAppId"
+                    type="text"
+                    label="COM_ITPCONNECT_FB_APP_ID"
+                    description="COM_ITPCONNECT_FB_APP_ID_DESC"
+                    default=""
+                    size="80"
+            />
+            <field name="facebookSecret" type="text" label="COM_ITPCONNECT_FB_APP_SECRET" description="COM_ITPCONNECT_FB_APP_SECRET_DESC" default="" size="80" />
+            <field name="fbDynamicLocale" type="radio" default="1" label="COM_ITPCONNECT_DYN_LOCALE" description="COM_ITPCONNECT_DYN_LOCALE_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
                 </field>
                 <field name="fbLocale" type="list" default="en_US" label="COM_ITPCONNECT_LANGUAGE" description="COM_ITPCONNECT_LANGUAGE_DESC">
                     <option value="af_ZA">COM_ITPCONNECT_AF_ZA</option>
@@ -146,6 +136,25 @@
                 <field name="fbSendConfirmationMail" type="radio" default="0" label="COM_ITPCONNECT_CONF_MAIL" description="COM_ITPCONNECT_CONF_MAIL_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
+                </field>
+                <field name="fbPerms" type="textarea" cols="30" rows="5" default="email" label="COM_ITPCONNECT_FB_PERMS" description="COM_ITPCONNECT_FB_PERMS_DESC" />
+                
+                <field name="spacer2" type="spacer" class="text" label="COM_ITPCONNECT_PROFILE_PIC_SETTINGS" />
+                <field name="fbShowImage" type="radio" default="0" label="COM_ITPCONNECT_FB_SHOW_IMAGE" description="COM_ITPCONNECT_FB_SHOW_IMAGE_DESC">
+                    <option value="0">JNo</option>
+                    <option value="1">JYes</option>
+                </field>
+                <field name="fbImageSize" type="list" default="square" label="COM_ITPCONNECT_FB_IMAGE_SIZE" description="COM_ITPCONNECT_FB_IMAGE_SIZE_DESC">
+                    <option value="square">Square</option>
+                    <option value="small">Small</option>
+                    <option value="large">Large</option>
+                </field>
+                <field name="spacer3" type="spacer" class="text" label="COM_ITPCONNECT_LOGIN_BUTTON" />
+                <field name="fbButtonSize" type="list" default="large" label="COM_ITPCONNECT_BUTTON_SIZE" description="COM_ITPCONNECT_BUTTON_SIZE_DESC">
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">xLarge</option>
                 </field>
         </fieldset>
         

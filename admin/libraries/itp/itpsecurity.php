@@ -19,9 +19,7 @@ class ItpSecurity {
 	private $e = null;
 	
 	public function __construct( $e = null ) {
-	
 		$this->e = $e;
-		
 	}
 	
 	/**
@@ -30,34 +28,62 @@ class ItpSecurity {
 	 * @param $message
 	 * @todo Do email sending.
 	 */
-	public function AlertMe( $message = "" ) {
+	public function AlertMe() {
 		
-		if ( !empty( $this->e ) ) {
-			$message = "\nFILE : " . $this->e->getFile()  . "\n";
-	        $message .= "LINE : " . $this->e->getLine() . "\n";
-	        $message .= "CODE : " . $this->e->getCode() . "\n";
-	        $message .= "MESSAGE : " . $this->e->getMessage() . "\n";
-		}
-		
-		$this->Log($message);
+	    $message = $this->genMessage();
+		$this->log($message);
+		$this->sendMail($message);
            
 	}
 	
-	private function Log( $message ) {
-		
-            // get an instance of JLog for myerrors log file
-            $log = JLog::getInstance();
-            // create entry array
-            $entry = array(
-                'LEVEL'   => '1',
-                'STATUS'  => JText::_('ITP_ERROR_SYSTEM'),
-                'COMMENT' => $message
-            );
-            // add entry to the log
-            $log->addEntry($entry);
-            
-	}
+    public function log($message) {
+        
+        // get an instance of JLog for myerrors log file
+        $log = JLog::getInstance();
+        $entry = new  JLogEntry($message, JLog::ALERT);
+        $log->add($entry);
+        
+    }
 	
+    public function genMessage() {
+        
+        $message = "";
+        if(empty($this->e)) {
+            return $message;
+        }
+        $trace = "";
+        foreach($this->e->trace as $v) {
+            $trace .="===================================\n";
+			$trace .="FILE:"     . $v['file'] . "\n";
+			$trace .="LINE:"     . $v['line'] . "\n";
+			$trace .="CLASS:"    . $v['class'] . "\n";
+			$trace .="FUNCTION:" . $v['function'] . "\n";
+//			$trace .="ARGS:"     . var_export($v['args'], true) . "\n";
+			$trace .="====================================\n";
+		}
+		
+		$message = "*****************************************\n";
+        $message = "\nFILE : " . $this->e->getFile()  . "\n";
+        $message .= "LINE : " . $this->e->getLine() . "\n";
+        $message .= "CODE : " . $this->e->getCode() . "\n";
+        $message .= "MESSAGE : " . $this->e->getMessage() . "\n";
+        if($this->data) {
+            $message .= "EXTRA INFO : " . $this->e->data . "\n";
+        }
+        if($trace) {
+            $message .= "TRACE : " . $trace . "\n";
+        }
+        $message = "*****************************************\n";
+        
+    }
+    
+    /**
+     * Send a mail to the administrator
+     */
+    public function sendMail($message) {
+        
+    }
+    
 	/**
 	 * 
 	 */

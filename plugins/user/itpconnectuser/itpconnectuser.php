@@ -11,8 +11,8 @@
  * other free or open source software licenses.
  */
 
-// Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted access' );
+// No direct access
+defined('_JEXEC') or die;
 
 jimport('joomla.application.component.helper');
 jimport('joomla.plugin.plugin');
@@ -52,18 +52,8 @@ class plgUserITPConnectUser extends JPlugin {
             return true;
         }
 		
-        $fbSession  = ItpcHelper::getFB()->getSession();
-        $fbUserId   = JArrayHelper::getValue($fbSession,"uid");
-
-	    try {
-            ItpcHelper::fbLogout($fbUserId);
-        } catch ( Exception $e ) {
-            $itpSecurity = new ItpSecurity( $e );
-            $itpSecurity->AlertMe();
-            JError::raiseError( 500, JText::_( 'ITP_ERROR_SYSTEM' ) );
-            jexit();
-            
-        }
+        $facebook  = ItpcHelper::getFB();
+	    $facebook->destroySession();
 		
 		return true;
 	}

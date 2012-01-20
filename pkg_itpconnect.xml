@@ -12,7 +12,7 @@
 	<url>http://itprism.com</url>
 	<packager>Todor Iliev</packager>
 	<packagerurl>http://itprism.com/free-joomla-extensions/social-connection-authentication</packagerurl>
-	<description><![CDATA[<p><a href="http://itprism.com/free-joomla-extensions/social-connection-authentication">ITPConnect</a> helps your users to connect and login into your website using their Facebook and Twitter accounts.</p><p>If you like this extension, you are able to invest in its improvement. You can <a href="http://itprism.com/sponsorship" title="ITPConnect sponsoring" target="_blank">sponsor it via SMS or PayPal</a>.</p><p>Please, <a href="http://extensions.joomla.org/extensions/social-web/facebook-integration/15851">vote for the extension</a> on Joomla! Extensions Directory</p>]]></description>
+	<description><![CDATA[<p><a href="http://itprism.com/free-joomla-extensions/social-connection-authentication">ITPConnect</a> helps your users to connect and login into your website using their Facebook, Twitter and Google accounts.</p><p>If you like this extension, you are able to invest in its improvement. You can <a href="http://itprism.com/sponsorship" title="ITPConnect sponsoring" target="_blank">sponsor it via SMS or PayPal</a>.</p><p>Please, <a href="http://extensions.joomla.org/extensions/social-web/facebook-integration/15851">vote for the extension</a> on Joomla! Extensions Directory</p>]]></description>
 	<files folder="packages">
 		<file type="component" 	id="com_itpconnect" >com_itpconnect.zip</file>
 		<file type="module"		id="mod_itpconnect" 	client="site">mod_itpconnect.zip</file>

@@ -7,6 +7,14 @@ ITPConnect for Joomla!
 Changelog
 ---------
 
+v1.4
+-----------------
+* Added the new version ( 3.1.1 ) of Facebook PHP SDK
+* Moved parameters from ITPConnect login module to the component config.
+* Now Facebook JS library is loaded asynchronously.
+* Replaced the XFBML with HTML5 button code.
+* Improved performance.
+
 v1.3
 -----------------
 * Added profile picture sizes - square, small, large;

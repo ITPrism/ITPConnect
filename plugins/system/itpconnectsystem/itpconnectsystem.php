@@ -11,8 +11,8 @@
  * other free or open source software licenses.
  */
 
-// no direct access
-defined( '_JEXEC' ) or die( 'Restricted access' );
+// No direct access
+defined('_JEXEC') or die;
 
 jimport('joomla.application.component.helper');
 jimport('joomla.plugin.plugin');
@@ -100,17 +100,7 @@ class plgSystemItpConnectSystem extends JPlugin {
         
         // Get return page
 	    $return = ItpcHelper::getReturn();
-
-        $js = "
-        var myRequest = new Request({
-            method: 'get',
-            url: 'index.php?option=com_itpconnect&task=facebook.connect&format=json',
-            onComplete: function () {
-                window.location = '$return'; 
-	        }
-        });
-        myRequest.send();
-";
+        $return = base64_encode($return);
         
         $buffer = JResponse::getBody();
 		
@@ -119,81 +109,52 @@ class plgSystemItpConnectSystem extends JPlugin {
 		$matches = array();
 		if(preg_match($pattern,$buffer,$matches)){
 			
-			$facebook = ItpcHelper::getFB();
-            /* @var $facebook Facebook */
-			
-	        // We may or may not have this data based on a $_GET or $_COOKIE based session.
-	        //
-	        // If we get a session here, it means we found a correctly signed session using
-	        // the Application Secret only Facebook and the Application know. We dont know
-	        // if it is still valid until we make an API call using the session. A session
-	        // can become invalid if it has already expired (should not be getting the
-	        // session back in this case) or if the user logged out of Facebook.
-	        $session = $facebook->getSession();
-
 	        // Add Facebook tags description into html tag
-	        $newHtmlAttr = '<html xmlns:fb="http://www.facebook.com/2008/fbml" '; 
-	        $buffer = str_replace("<html",$newHtmlAttr,$buffer);
+//	        $newHtmlAttr = '<html xmlns:fb="http://www.facebook.com/2008/fbml" '; 
+//	        $buffer = str_replace("<html",$newHtmlAttr,$buffer);
 	        
 //	        $newBodyTag = $matches[0] . "
 			$newBodyTag = "
-			<!--
-      We use the JS SDK to provide a richer user experience. For more info,
-      look here: http://github.com/facebook/connect-js
-    -->
     <div id='fb-root'></div>
-    <script src='http://connect.facebook.net/" . $locale . "/all.js'></script>
-    
+
     <script>
-	    FB.init({
-	     appId  : '" . $facebook->getAppId() . "',
-	     session : " . json_encode($session) . ", // don't refetch the session when PHP already has it
-	     status : true, // check login status
-	     cookie : true, // enable cookies to allow the server to access the session
-	     xfbml  : true  // parse XFBML
-	   });
-      
-	   // whenever the user logs in, we refresh the page
+	function itpLogin() {
+    	window.location = 'index.php?option=com_itpconnect&task=facebook.connect&return=".$return."'
+    }
+    
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '" . $this->itpConnectParams->get("facebookAppId") . "', // App ID
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true,  // parse XFBML
+          oauth  	: true
+        });
+    
+        // Additional initialization code here
+        // whenever the user logs in, we refresh the page
         FB.Event.subscribe('auth.login', function() {
           $ajaxLoader
-          $js
         });
         
         // whenever the user logs in, we refresh the page
         FB.Event.subscribe('auth.logout', function() {
-          window.location.reload();
+          	window.location.reload();
         });
         
-    </script>" ;
-			
-            $fbUserId  = JArrayHelper::getValue($session,"uid");
-            
-    		try {
-        		$result    = ItpcHelper::checkLogout($fbUserId);
-                
-                if($result){
-                    
-                    // Avoid displaying AJAX loader if the user was not connected to Facebook.
-                    if(!$session) {
-                        $ajaxLoader = "";
-                    }
-                    
-                    $newBodyTag .= "<script>
-                    window.addEvent('domready', function(){ 
-                        $ajaxLoader
-                        FB.logout();
-                    });
-                    </script>";
-                    
-                    ItpcHelper::clearSession($fbUserId);
-                }
-                
-            } catch ( Exception $e ) {
-                $itpSecurity = new ItpSecurity( $e );
-                $itpSecurity->AlertMe();
-                JError::raiseError(500, JText::_( 'ITP_ERROR_SYSTEM' ));
-                jexit();
-            }
+      };
+      
+    </script>
+    
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = \"//connect.facebook.net/" . $locale . "/all.js\";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    " ;
 			
             $newBodyTag .= $matches[0];
             

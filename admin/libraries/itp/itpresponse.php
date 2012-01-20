@@ -15,23 +15,26 @@
 defined('_JEXEC') or die();
 
 /**
- * ITP Response
+ * ITPResponse
  *
  * @author  Todor Iliev
  * @package ITPrism Libraries
  */
 class ItpResponse {
 	
+    const FAILURE = 0;
+    const SUCCESS = 1;
+    
 	/**
      * Send message as JSON notation
      * @param string Message
      * @param integer Indicator for success [ 0 = failure, 1 = success ] 
      */
-    public static function sendJsonMsg($message,$success = 0, $data = array()){
+    public static function sendJsonMsg($message, $success = 1, $data = array()){
         
         $msg  =   array(
-          "msg" =>strval($message),
-          "success" => $success
+        	"msg" =>strval($message),
+          	"success" => $success
         );
             
         if(!empty($data)) {
