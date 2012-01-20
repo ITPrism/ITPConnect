@@ -7,7 +7,7 @@
 	<authorUrl>http://itprism.com</authorUrl>
 	<copyright>Copyright (C) 2010 Todor Iliev ( ITPrism.com )</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html</license>
-	<version>1.7</version>
+	<version>1.4</version>
 	<description>This plugin destroys the FaceBook session on logout.</description>
 	<files>
 		<filename plugin="itpconnectuser">itpconnectuser.php</filename>
